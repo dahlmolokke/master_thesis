@@ -253,3 +253,27 @@ def conductivity_P_batch(ne_profiles, profile_datetimes, altitude, lat, lon, sim
         all_conductivities.append(terms)
 
     return np.array(all_conductivities)
+
+def joule_heating(conductivity_profiles, E_profiles, dE_profiles, unbiased=True, beta=30):
+    """
+    Calculate Joule heating rate profiles.
+
+    Args:
+        conductivity_profiles (np.ndarray): 3D array (datetimes, VHF_meas_points, UHF_meas_points) of Pedersen conductivity in S/m.
+        E_profiles (np.ndarray): 2D array (datetime, VHF_meas_points) where each row is an electric field profile in V/m.
+        dE_profiles (np.ndarray): 2D array (datetime, VHF_meas_points) where each row is an electric field profile in V/m.
+        unbiased (bool): If True, calculate unbiased Joule heating rate.
+        beta (float): Scaling factor for error contribution when calculating unbiased Joule heating.
+
+    Returns:
+        np.ndarray: 3D array (datetimes, VHF_meas_points, UHF_meas_points) of Joule heating rates in W/m^3.
+    """
+    # Calculate biased Joule heating rates
+    Qj_profiles = conductivity_profiles * E_profiles[:, :, np.newaxis]**2
+    # If unbiased, subtract the Joule heating due to dE
+    if unbiased:
+        dQj_profiles = conductivity_profiles * dE_profiles[:, :, np.newaxis]**2
+        Qj_profiles -= beta * dQj_profiles
+        return Qj_profiles 
+    
+    return Qj_profiles
