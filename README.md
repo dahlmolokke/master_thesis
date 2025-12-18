@@ -1,5 +1,5 @@
 # Master project
-This repository contains some of the code utilized for my master project.
+This repository contains some of the code utilized in my master project.
 
 ### Data retrieval scripts
 Utilized MadrigalWeb's Python API to retrieve EISCAT VHF and UHF data. Developed in August 2025, 
