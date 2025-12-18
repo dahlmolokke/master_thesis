@@ -12,3 +12,7 @@ on UHF data.
 ### Physics utility
 Contains some of the utility used for calculating conductances and Joule heating rates based on 
 predicted electron density profiles from UHF and VHF data.
+
+### NOTE
+This repository does not contain the applications of the scripts as they require datasets which are too big to upload here. 
+All information about how to reproduce results from my thesis is described in the thesis.
