@@ -18,8 +18,7 @@ FULL_NAME = "Firstname Lastname"                      # Replace with your full n
 USER_EMAIL = "firstname.lastname@domain.com"          # Replace with your email
 USER_AFFILIATION = "Your Affiliation"                 # Replace with your affiliation
 
-
-# Build the command as a list (Windows safe)
+# Build the command as a list
 cmd = [
     "python", MADRIGAL_SCRIPT_PATH,
     "--verbose",
